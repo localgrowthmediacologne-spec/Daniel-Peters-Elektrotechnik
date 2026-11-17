@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Schutz vor Suchmaschinen-Indexierung (Demo-Version) -->
+    <meta name="robots" content="noindex, nofollow">
+    <title>Design-Entwurf · Daniel Peters Elektrotechnik – Meisterbetrieb in Köln</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .font-tech { font-family: 'Chakra Petch', sans-serif; }
+
+        .page-view {
+            animation: fadeIn 0.25s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Technisches Raster für das Smart-Home- & Energie-Studio */
+        .tech-grid {
+            background-size: 24px 24px;
+            background-image:
+                linear-gradient(to right, rgba(229, 201, 0, 0.06) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(229, 201, 0, 0.06) 1px, transparent 1px);
+        }
+
+        @keyframes pulseRing {
+            0%, 100% { transform: scale(1); opacity: 0.85; }
+            50% { transform: scale(1.18); opacity: 0.35; }
+        }
+        .sensor-pulse {
+            animation: pulseRing 2s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-white text-zinc-800 antialiased selection:bg-[#E5C900] selection:text-zinc-950 flex flex-col min-h-screen">
+
+    <!-- 1. Gut sichtbarer Demo-Hinweis-Balken ganz oben -->
+    <div class="bg-amber-400 text-zinc-950 text-xs md:text-sm font-bold py-2.5 px-4 text-center border-b border-amber-500 shadow-xs z-50">
+        🎨 UNVERBINDLICHER DESIGN-ENTWURF · Demoseite erstellt von Local Growth Media (Keine aktive Unternehmenswebsite)
+    </div>
+
+    <!-- 2. Meisterbetrieb- & Direktkontakt-Leiste -->
+    <div class="bg-[#232529] text-zinc-200 text-xs font-medium py-2 px-4 text-center border-b border-white/10">
+        ⚡ Meisterbetrieb in Köln · Elektroinstallation, Sicherheitstechnik &amp; Energieeffizienz · Direktwahl: <a href="tel:+491718635605" class="text-[#E5C900] font-bold hover:underline">+49 171 8635605</a>
+    </div>
+
+    <!-- 3. Hauptnavigation im Original-Farbschema (Anthrazit #313338 + Meister-Gelb #E5C900) -->
+    <header class="sticky top-0 z-40 bg-[#313338]/95 backdrop-blur-md border-b border-white/10 shadow-md">
+        <div class="max-w-6xl mx-auto px-4 py-3.5 flex items-center justify-between gap-4">
+            <!-- Marken-Logo (Hommage an das sechseckige Glühbirnen-Blitz-Signet) -->
+            <button type="button" onclick="navigateTo('home')" class="flex items-center gap-3 text-left group cursor-pointer">
+                <div class="w-11 h-11 flex items-center justify-center shrink-0">
+                    <svg class="w-11 h-11" viewBox="0 0 64 64" fill="none">
+                        <!-- Offenes Sechseck in Weiß -->
+                        <path d="M46 14L32 6L12 17.5V46.5L32 58L46 50" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- Glühbirne mit Blitz in Meister-Gelb -->
+                        <path d="M32 18C26.5 18 22 22.3 22 27.6C22 31.1 23.9 34.1 26.8 35.8V39.5H37.2V35.8C40.1 34.1 42 31.1 42 27.6C42 22.3 37.5 18 32 18Z" stroke="#E5C900" stroke-width="2.4" stroke-linejoin="round"/>
+                        <path d="M28 43.5H36M29.5 47H34.5" stroke="#E5C900" stroke-width="2.4" stroke-linecap="round"/>
+                        <path d="M33 23.5L29 29H32.5L31 34L35 28.5H31.5L33 23.5Z" fill="#E5C900"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="font-tech text-sm sm:text-base md:text-lg font-bold tracking-wider text-white block leading-none uppercase">
+                        DANIEL PETERS
+                    </span>
+                    <span class="font-tech text-xs md:text-sm font-bold tracking-wider text-white block leading-tight uppercase">
+                        ELEKTROTECHNIK
+                    </span>
+                    <span class="text-[10px] font-bold tracking-[0.22em] text-[#E5C900] block uppercase">
+                        MEISTERBETRIEB
+                    </span>
+                </div>
+            </button>
+
+            <!-- Desktop-Unterseiten-Navigation -->
+            <nav class="hidden lg:flex items-center gap-1 bg-[#232529] p-1 rounded-xl border border-white/10">
+                <button type="button" onclick="navigateTo('home')" data-nav="home" class="nav-btn px-4 py-2 rounded-lg text-sm font-bold transition bg-[#E5C900] text-zinc-950 shadow-2xs cursor-pointer">
+                    Startseite &amp; Smart-Studio
+                </button>
+                <button type="button" onclick="navigateTo('leistungen')" data-nav="leistungen" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-zinc-300 hover:text-white transition cursor-pointer">
+                    Leistungen &amp; Stärken
+                </button>
+                <button type="button" onclick="navigateTo('rechner')" data-nav="rechner" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-zinc-300 hover:text-white transition cursor-pointer">
+                    30-Sek.-Preisrechner
+                </button>
+                <button type="button" onclick="navigateTo('kontakt')" data-nav="kontakt" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-zinc-300 hover:text-white transition cursor-pointer">
+                    Kontakt &amp; Anfahrt
+                </button>
+            </nav>
+
+            <!-- Primärer CTA -->
+            <button type="button" onclick="navigateTo('rechner')" class="bg-[#E5C900] hover:bg-[#f2d600] text-zinc-950 font-extrabold text-xs md:text-sm px-4 py-2.5 rounded-xl transition shadow-sm cursor-pointer">
+                Projekt kalkulieren
+            </button>
+        </div>
+
+        <!-- Mobile Unterseiten-Leiste -->
+        <div class="lg:hidden border-t border-white/10 bg-[#26282C] px-2 py-1.5 flex justify-around text-xs font-semibold overflow-x-auto">
+            <button type="button" onclick="navigateTo('home')" data-nav-mob="home" class="mob-nav-btn px-3 py-1.5 rounded-lg text-zinc-950 bg-[#E5C900]">Start</button>
+            <button type="button" onclick="navigateTo('leistungen')" data-nav-mob="leistungen" class="mob-nav-btn px-3 py-1.5 rounded-lg text-zinc-300">Leistungen</button>
+            <button type="button" onclick="navigateTo('rechner')" data-nav-mob="rechner" class="mob-nav-btn px-3 py-1.5 rounded-lg text-zinc-300">Preisrechner</button>
+            <button type="button" onclick="navigateTo('kontakt')" data-nav-mob="kontakt" class="mob-nav-btn px-3 py-1.5 rounded-lg text-zinc-300">Kontakt</button>
+        </div>
+    </header>
+
+    <!-- HAUPTINHALT (Multi-Page Container) -->
+    <main class="flex-1">
+
+        <!-- ========================================================= -->
+        <!-- UNTERSEITE 1: STARTSEITE & SMART-HOME-KONFIGURATOR        -->
+        <!-- ========================================================= -->
+        <div id="view-home" class="page-view">
+            <!-- Hero Section im charakteristischen Anthrazit (#313338) mit Meister-Gelb -->
+            <section class="pt-10 pb-16 md:pt-16 md:pb-20 px-4 bg-[#313338] text-white border-b border-zinc-700">
+                <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    
+                    <!-- Linke Spalte -->
+                    <div class="lg:col-span-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-4 py-1.5 text-xs text-[#E5C900] font-bold mb-5">
+                            <span>⚡</span>
+                            <span>Elektrotechnik in Köln · Zuverlässig, sicher &amp; energieeffizient</span>
+                        </div>
+
+                        <h1 class="font-tech text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-[1.12] mb-5 uppercase">
+                            Ihr Partner für <span class="text-[#E5C900]">Elektroinstallation</span>, Reparaturen &amp; Energieeffizienz
+                        </h1>
+
+                        <p class="text-zinc-300 text-base md:text-lg mb-7 leading-relaxed">
+                            Sie suchen einen kompetenten Elektriker-Meisterbetrieb in Ihrer Nähe? Mit langjähriger Erfahrung und einem starken Fokus auf Qualität realisieren wir moderne Elektroanlagen, Smart-Home-Lösungen, Sicherheitstechnik und energieeffiziente LED-Konzepte in Köln.
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+                            <button type="button" onclick="navigateTo('rechner')" class="bg-[#E5C900] hover:bg-[#f2d600] text-zinc-950 font-extrabold px-7 py-4 rounded-xl text-sm md:text-base transition shadow-lg cursor-pointer">
+                                In 30 Sek. Preis berechnen →
+                            </button>
+                            <a href="tel:+491718635605" class="bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold px-6 py-4 rounded-xl text-sm md:text-base transition text-center">
+                                📞 +49 171 8635605
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Rechte Spalte: Kreatives Interaktives Smart-Home-, Sicherheits- & Energie-Studio -->
+                    <div class="lg:col-span-6">
+                        <div class="bg-[#232529] p-4 rounded-3xl shadow-2xl border border-white/10">
+                            <!-- Interaktiver Haus-Querschnitt -->
+                            <div class="relative h-72 sm:h-80 rounded-2xl overflow-hidden border border-white/15 tech-grid bg-[#1B1D20] p-4 flex flex-col justify-between">
+                                
+                                <!-- Status-Leiste oben -->
+                                <div class="relative z-30 flex items-center justify-between gap-2">
+                                    <span class="bg-white/10 text-zinc-200 text-[10px] font-tech font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-white/15">
+                                        Smart-Home &amp; Sicherheits-Check
+                                    </span>
+                                    <span id="energyBadge" class="bg-[#E5C900]/20 border border-[#E5C900]/40 text-[#E5C900] text-[10px] font-bold px-2.5 py-1 rounded-full">
+                                        ⚡ Effizienz: +42 % Ersparnis
+                                    </span>
+                                </div>
+
+                                <!-- Stilisiertes Haus-Profil -->
+                                <div class="relative my-auto mx-auto w-full max-w-sm">
+                                    <!-- Dach -->
+                                    <div class="w-0 h-0 mx-auto border-l-[140px] sm:border-l-[165px] border-l-transparent border-r-[140px] sm:border-r-[165px] border-r-transparent border-b-[46px] border-b-[#313338] relative">
+                                        <!-- Rauchmelder-Sensor im Dachgeschoss -->
+                                        <div id="visSmoke" class="absolute -left-3 top-6 flex flex-col items-center transition-opacity duration-300">
+                                            <div class="w-4 h-4 rounded-full bg-red-500/30 sensor-pulse flex items-center justify-center">
+                                                <div class="w-2 h-2 rounded-full bg-red-500"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Hauskörper (2 Etagen) -->
+                                    <div class="mx-auto w-[280px] sm:w-[330px] bg-[#2B2D32] border-2 border-zinc-600 rounded-b-xl p-3 grid grid-cols-2 gap-3 relative">
+                                        
+                                        <!-- Außenkamera oben rechts am Haus -->
+                                        <div id="visCamera" class="absolute -right-3 -top-3 bg-[#E5C900] text-zinc-950 text-[10px] font-extrabold px-2 py-0.5 rounded-md shadow-md transition-opacity duration-300">
+                                            📹 CCTV Aktiv
+                                        </div>
+
+                                        <!-- Raum 1: Smart-Home Wohnbereich -->
+                                        <div id="roomSmartLight" class="rounded-lg border border-[#E5C900]/50 bg-[#E5C900]/15 p-2.5 transition-all duration-300">
+                                            <div class="flex items-center justify-between mb-1">
+                                                <span class="text-[11px] font-bold text-white">💡 Smart-LED</span>
+                                                <span id="smartLightState" class="text-[10px] font-bold text-[#E5C900]">Szene: Warm</span>
+                                            </div>
+                                            <div class="h-1.5 w-full bg-zinc-700 rounded-full overflow-hidden">
+                                                <div id="smartLightBar" class="h-full bg-[#E5C900] w-4/5 transition-all duration-300"></div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Raum 2: Alarmanlage & Zutritt -->
+                                        <div id="roomSecurity" class="rounded-lg border border-emerald-500/40 bg-emerald-500/10 p-2.5 transition-all duration-300">
+                                            <div class="flex items-center justify-between mb-1">
+                                                <span class="text-[11px] font-bold text-white">🛡️ Alarm &amp; Schutz</span>
+                                                <span id="secState" class="text-[10px] font-bold text-emerald-400">Scharf</span>
+                                            </div>
+                                            <div class="text-[10px] text-zinc-300">Rauchmelder &amp; Fensterkontakte OK</div>
+                                        </div>
+
+                                        <!-- Unteres Modul: Energieeffizienz & E-Check -->
+                                        <div class="col-span-2 rounded-lg border border-white/10 bg-[#1F2124] px-3 py-2 flex items-center justify-between">
+                                            <div class="text-[11px] text-zinc-300">
+                                                <span class="font-bold text-white">Anlagenstatus:</span>
+                                                <span id="diagStatusText" class="text-emerald-400 font-semibold ml-1">VDE-Schutz &amp; FI-Kreise geprüft</span>
+                                            </div>
+                                            <button type="button" onclick="runVdeCheck()" class="text-[10px] font-bold bg-white/10 hover:bg-white/20 text-[#E5C900] px-2.5 py-1 rounded-md transition cursor-pointer">
+                                                E-Check testen
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Live-Hinweis unten -->
+                                <div class="text-center text-[11px] text-zinc-400">
+                                    Klicken Sie unten auf die Module, um Ihre Wunschausstattung zu testen
+                                </div>
+                            </div>
+
+                            <!-- Interaktive Steuerungs-Buttons -->
+                            <div class="pt-4 px-1 space-y-3">
+                                <div class="grid grid-cols-3 gap-2">
+                                    <button type="button" onclick="toggleHomeFeature('smart', this)" data-active="true" class="feature-btn border-2 border-[#E5C900] bg-[#E5C900]/15 rounded-xl p-2.5 text-center transition cursor-pointer">
+                                        <span class="block text-xs font-bold text-white">💡 Smart-Home</span>
+                                        <span class="block text-[10px] font-bold text-[#E5C900] mt-0.5">AKTIV</span>
+                                    </button>
+                                    <button type="button" onclick="toggleHomeFeature('security', this)" data-active="true" class="feature-btn border-2 border-[#E5C900] bg-[#E5C900]/15 rounded-xl p-2.5 text-center transition cursor-pointer">
+                                        <span class="block text-xs font-bold text-white">🛡️ Sicherheit</span>
+                                        <span class="block text-[10px] font-bold text-[#E5C900] mt-0.5">AKTIV</span>
+                                    </button>
+                                    <button type="button" onclick="toggleHomeFeature('energy', this)" data-active="true" class="feature-btn border-2 border-[#E5C900] bg-[#E5C900]/15 rounded-xl p-2.5 text-center transition cursor-pointer">
+                                        <span class="block text-xs font-bold text-white">⚡ LED-Effizienz</span>
+                                        <span class="block text-[10px] font-bold text-[#E5C900] mt-0.5">AKTIV</span>
+                                    </button>
+                                </div>
+
+                                <button type="button" onclick="transferStudioToCalculator()" class="w-full bg-[#E5C900] hover:bg-[#f2d600] text-zinc-950 font-extrabold py-3 rounded-xl text-xs transition cursor-pointer">
+                                    Ausgewählte Ausstattung in den 30-Sek.-Preisrechner übernehmen →
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Die 4 Original-Leistungssäulen (Elektroinstallation, Reparaturen, Sicherheitstechnik, Energieeffizienz) -->
+            <section class="py-16 px-4 bg-white">
+                <div class="max-w-5xl mx-auto">
+                    <div class="text-center max-w-2xl mx-auto mb-12">
+                        <h2 class="font-tech text-2xl md:text-3xl font-bold text-zinc-900 uppercase tracking-wide">
+                            Willkommen bei Ihrem zuverlässigen Partner für Elektrotechnik
+                        </h2>
+                        <p class="text-zinc-600 text-sm mt-2 leading-relaxed">
+                            Unsere Leistungen im Überblick – fachgerecht geplant und sauber umgesetzt in Köln und Umgebung:
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                        <!-- Leistung 1 -->
+                        <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-6 flex flex-col justify-between hover:border-[#E5C900] transition">
+                            <div>
+                                <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-[#313338] text-[#E5C900] flex items-center justify-center">
+                                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="font-bold text-zinc-900 text-base mb-2">Elektroinstallation</h3>
+                                <p class="text-xs text-zinc-600 leading-relaxed mb-4">Neubauinstallation, Planung moderner Anlagen und komfortable Smart-Home-Lösungen.</p>
+                            </div>
+                            <button type="button" onclick="quickStartCalculator('Elektroinstallation & Smart-Home', 220)" class="text-xs font-bold text-zinc-900 underline decoration-[#E5C900] decoration-2 underline-offset-4 hover:text-amber-600 cursor-pointer">
+                                Preis berechnen →
+                            </button>
+                        </div>
+
+                        <!-- Leistung 2 -->
+                        <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-6 flex flex-col justify-between hover:border-[#E5C900] transition">
+                            <div>
+                                <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-[#313338] text-[#E5C900] flex items-center justify-center">
+                                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="font-bold text-zinc-900 text-base mb-2">Reparaturen &amp; Wartung</h3>
+                                <p class="text-xs text-zinc-600 leading-relaxed mb-4">Schnelle Fehlersuche, Austausch defekter Anlagen und regelmäßige Sicherheitswartung.</p>
+                            </div>
+                            <button type="button" onclick="quickStartCalculator('Reparaturen, Fehlersuche & Wartung', 95)" class="text-xs font-bold text-zinc-900 underline decoration-[#E5C900] decoration-2 underline-offset-4 hover:text-amber-600 cursor-pointer">
+                                Preis berechnen →
+                            </button>
+                        </div>
+
+                        <!-- Leistung 3 -->
+                        <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-6 flex flex-col justify-between hover:border-[#E5C900] transition">
+                            <div>
+                                <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-[#313338] text-[#E5C900] flex items-center justify-center">
+                                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="font-bold text-zinc-900 text-base mb-2">Sicherheitstechnik</h3>
+                                <p class="text-xs text-zinc-600 leading-relaxed mb-4">Vernetzte Rauchmelder, moderne Alarmanlagen und hochauflösende Videoüberwachung.</p>
+                            </div>
+                            <button type="button" onclick="quickStartCalculator('Sicherheitstechnik (Alarm, Video & Rauchmelder)', 260)" class="text-xs font-bold text-zinc-900 underline decoration-[#E5C900] decoration-2 underline-offset-4 hover:text-amber-600 cursor-pointer">
+                                Preis berechnen →
+                            </button>
+                        </div>
+
+                        <!-- Leistung 4 -->
+                        <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-6 flex flex-col justify-between hover:border-[#E5C900] transition">
+                            <div>
+                                <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-[#313338] text-[#E5C900] flex items-center justify-center">
+                                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="font-bold text-zinc-900 text-base mb-2">Energieeffizienz</h3>
+                                <p class="text-xs text-zinc-600 leading-relaxed mb-4">Individuelle Energieberatung, effiziente LED-Systeme und stromsparende Gebäudetechnik.</p>
+                            </div>
+                            <button type="button" onclick="quickStartCalculator('Energieeffizienz & LED-Modernisierung', 190)" class="text-xs font-bold text-zinc-900 underline decoration-[#E5C900] decoration-2 underline-offset-4 hover:text-amber-600 cursor-pointer">
+                                Preis berechnen →
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Das charakteristische gelbe Banner "Warum uns wählen?" (aus der Original-Website) -->
+                    <div class="mt-14 bg-[#E5C900] text-zinc-950 rounded-3xl p-8 md:p-10 shadow-md">
+                        <h3 class="font-tech text-xl md:text-2xl font-bold uppercase tracking-wider text-center mb-8">
+                            Warum uns wählen?
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                            <div class="bg-white/35 rounded-2xl p-4">
+                                <div class="text-xl mb-1.5">🛡️</div>
+                                <div class="font-bold text-base mb-1">Zuverlässigkeit</div>
+                                <div class="text-xs font-medium text-zinc-900">Pünktlich und professionell</div>
+                            </div>
+                            <div class="bg-white/35 rounded-2xl p-4">
+                                <div class="text-xl mb-1.5">💎</div>
+                                <div class="font-bold text-base mb-1">Qualität</div>
+                                <div class="text-xs font-medium text-zinc-900">Hochwertige Materialien und erstklassige Arbeit</div>
+                            </div>
+                            <div class="bg-white/35 rounded-2xl p-4">
+                                <div class="text-xl mb-1.5">🤝</div>
+                                <div class="font-bold text-base mb-1">Kundennähe</div>
+                                <div class="text-xs font-medium text-zinc-900">Individuelle Beratung und Betreuung</div>
+                            </div>
+                            <div class="bg-white/35 rounded-2xl p-4">
+                                <div class="text-xl mb-1.5">🏅</div>
+                                <div class="font-bold text-base mb-1">Erfahrung</div>
+                                <div class="text-xs font-medium text-zinc-900">Langjährige Expertise in der Elektrotechnik</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- UNTERSEITE 2: LEISTUNGEN & MEISTERQUALITÄT                -->
+        <!-- ========================================================= -->
+        <div id="view-leistungen" class="page-view hidden">
+            <section class="py-14 px-4 bg-[#313338] text-white border-b border-zinc-700">
+                <div class="max-w-5xl mx-auto">
+                    <span class="text-[#E5C900] text-xs font-bold uppercase tracking-widest">Meisterbetrieb Köln</span>
+                    <h1 class="font-tech text-3xl md:text-5xl font-bold uppercase mt-1 mb-4">
+                        Leistungen &amp; Arbeitsweise
+                    </h1>
+                    <p class="text-zinc-300 text-base max-w-2xl leading-relaxed">
+                        Von der klassischen Elektroinstallation über moderne Sicherheitssysteme bis zur energieeffizienten LED-Beleuchtung: Wir begleiten Privat- und Gewerbekunden in ganz Köln.
+                    </p>
+                </div>
+            </section>
+
+            <section class="py-14 px-4 bg-white border-b border-zinc-200">
+                <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-zinc-50 border border-zinc-200 p-7 rounded-2xl">
+                        <div class="text-xs font-bold uppercase text-amber-600 mb-1">01 · Neubau &amp; Sanierung</div>
+                        <h3 class="font-tech text-xl font-bold text-zinc-900 mb-3 uppercase">Elektroinstallation &amp; Smart-Home</h3>
+                        <p class="text-sm text-zinc-600 leading-relaxed mb-4">
+                            Planung und Installation moderner Elektroanlagen, Zählerschränke, Unterverteilungen sowie intelligenter Smart-Home-Steuerungen für Licht, Beschattung und Heizung.
+                        </p>
+                        <button type="button" onclick="quickStartCalculator('Elektroinstallation & Smart-Home', 220)" class="text-xs font-bold text-zinc-900 underline decoration-[#E5C900] decoration-2 cursor-pointer">
+                            Jetzt kalkulieren →
+                        </button>
+                    </div>
+
+                    <div class="bg-zinc-50 border border-zinc-200 p-7 rounded-2xl">
+                        <div class="text-xs font-bold uppercase text-amber-600 mb-1">02 · Schnelle Hilfe</div>
+                        <h3 class="font-tech text-xl font-bold text-zinc-900 mb-3 uppercase">Reparaturen, Fehlersuche &amp; Wartung</h3>
+                        <p class="text-sm text-zinc-600 leading-relaxed mb-4">
+                            Präzise Störungsanalyse, Austausch defekter Sicherungen, Schalter oder Leitungen sowie regelmäßige Wartung und Sicherheitsprüfung Ihrer elektrischen Anlagen.
+                        </p>
+                        <button type="button" onclick="quickStartCalculator('Reparaturen, Fehlersuche & Wartung', 95)" class="text-xs font-bold text-zinc-900 underline decoration-[#E5C900] decoration-2 cursor-pointer">
+                            Jetzt kalkulieren →
+                        </button>
+                    </div>
+
+                    <div class="bg-zinc-50 border border-zinc-200 p-7 rounded-2xl">
+                        <div class="text-xs font-bold uppercase text-amber-600 mb-1">03 · Schutz für Haus &amp; Gewerbe</div>
+                        <h3 class="font-tech text-xl font-bold text-zinc-900 mb-3 uppercase">Sicherheitstechnik</h3>
+                        <p class="text-sm text-zinc-600 leading-relaxed mb-4">
+                            Fachgerechte Montage und Vernetzung von Rauchwarnmeldern, Einbruchmeldeanlagen und moderner Videoüberwachung für maximale Sicherheit rund um die Uhr.
+                        </p>
+                        <button type="button" onclick="quickStartCalculator('Sicherheitstechnik (Alarm, Video & Rauchmelder)', 260)" class="text-xs font-bold text-zinc-900 underline decoration-[#E5C900] decoration-2 cursor-pointer">
+                            Jetzt kalkulieren →
+                        </button>
+                    </div>
+
+                    <div class="bg-zinc-50 border border-zinc-200 p-7 rounded-2xl">
+                        <div class="text-xs font-bold uppercase text-amber-600 mb-1">04 · Stromkosten senken</div>
+                        <h3 class="font-tech text-xl font-bold text-zinc-900 mb-3 uppercase">Energieeffizienz &amp; LED-Systeme</h3>
+                        <p class="text-sm text-zinc-600 leading-relaxed mb-4">
+                            Beratung zu Einsparpotenzialen, Umrüstung von Wohn- und Gewerberäumen auf langlebige LED-Beleuchtung und intelligente Verbrauchssteuerung.
+                        </p>
+                        <button type="button" onclick="quickStartCalculator('Energieeffizienz & LED-Modernisierung', 190)" class="text-xs font-bold text-zinc-900 underline decoration-[#E5C900] decoration-2 cursor-pointer">
+                            Jetzt kalkulieren →
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4-Schritte-Ablauf -->
+            <section class="py-14 px-4 bg-zinc-50">
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="font-tech text-2xl md:text-3xl font-bold text-zinc-900 uppercase text-center mb-10">In 4 Schritten zur fertigen Lösung</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="bg-white border border-zinc-200 p-5 rounded-2xl">
+                            <div class="w-8 h-8 rounded-lg bg-[#313338] text-[#E5C900] font-bold text-xs flex items-center justify-center mb-3">1</div>
+                            <h4 class="font-bold text-zinc-900 text-sm mb-1.5">Online-Kalkulation</h4>
+                            <p class="text-xs text-zinc-600 leading-relaxed">Sie wählen Ihr Vorhaben im 30-Sekunden-Rechner aus oder rufen uns direkt an.</p>
+                        </div>
+                        <div class="bg-white border border-zinc-200 p-5 rounded-2xl">
+                            <div class="w-8 h-8 rounded-lg bg-[#313338] text-[#E5C900] font-bold text-xs flex items-center justify-center mb-3">2</div>
+                            <h4 class="font-bold text-zinc-900 text-sm mb-1.5">Vor-Ort-Check in Köln</h4>
+                            <p class="text-xs text-zinc-600 leading-relaxed">Wir prüfen die Gegebenheiten vor Ort und beraten Sie persönlich und verständlich.</p>
+                        </div>
+                        <div class="bg-white border border-zinc-200 p-5 rounded-2xl">
+                            <div class="w-8 h-8 rounded-lg bg-[#313338] text-[#E5C900] font-bold text-xs flex items-center justify-center mb-3">3</div>
+                            <h4 class="font-bold text-zinc-900 text-sm mb-1.5">Klares Angebot</h4>
+                            <p class="text-xs text-zinc-600 leading-relaxed">Sie erhalten ein transparentes Angebot mit hochwertigen Markenmaterialien.</p>
+                        </div>
+                        <div class="bg-white border border-zinc-200 p-5 rounded-2xl">
+                            <div class="w-8 h-8 rounded-lg bg-[#313338] text-[#E5C900] font-bold text-xs flex items-center justify-center mb-3">4</div>
+                            <h4 class="font-bold text-zinc-900 text-sm mb-1.5">Saubere Montage</h4>
+                            <p class="text-xs text-zinc-600 leading-relaxed">Termintreue Installation inklusive fachgerechter Prüfung und Einweisung.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- UNTERSEITE 3: 30-SEKUNDEN-PREISRECHNER                    -->
+        <!-- ========================================================= -->
+        <div id="view-rechner" class="page-view hidden">
+            <section class="py-14 px-4 bg-zinc-50">
+                <div class="max-w-2xl mx-auto">
+                    <div class="text-center mb-8">
+                        <span class="text-amber-600 text-xs font-bold uppercase tracking-wider">Sofort-Richtwert</span>
+                        <h1 class="font-tech text-3xl md:text-4xl font-bold text-zinc-900 uppercase mt-1">Was kostet Ihr Projekt?</h1>
+                        <p class="text-zinc-600 text-sm mt-2">Wählen Sie Leistungsbereich und Umfang für eine unverbindliche Kostenschätzung.</p>
+                    </div>
+
+                    <div class="bg-white border border-zinc-200 rounded-2xl p-6 md:p-8 shadow-lg">
+                        <!-- Progress Bar -->
+                        <div class="mb-6">
+                            <div class="flex justify-between text-xs text-zinc-500 font-medium mb-2">
+                                <span id="stepLabel">Schritt 1 von 3</span>
+                                <span id="stepPercent">33%</span>
+                            </div>
+                            <div class="w-full bg-zinc-100 h-2 rounded-full overflow-hidden">
+                                <div id="progressBar" class="bg-[#E5C900] h-full transition-all duration-300" style="width: 33%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Schritt 1: Leistung -->
+                        <div id="step1" class="step-panel space-y-3">
+                            <h3 class="text-base md:text-lg font-bold text-zinc-900 mb-3">1. Welchen Bereich betrifft Ihr Anliegen?</h3>
+                            
+                            <button type="button" onclick="selectService('Elektroinstallation & Smart-Home', 220)" class="w-full text-left p-4 rounded-xl border border-zinc-200 bg-zinc-50 hover:border-[#E5C900] hover:bg-amber-50/30 transition flex justify-between items-center cursor-pointer">
+                                <div>
+                                    <div class="font-bold text-zinc-900">Elektroinstallation &amp; Smart-Home</div>
+                                    <div class="text-xs text-zinc-500">Neubauinstallation, Zählerschrank, Steckdosen &amp; Smart-Home</div>
+                                </div>
+                                <span class="bg-[#313338] text-[#E5C900] font-bold text-xs px-2.5 py-1 rounded-lg shrink-0 ml-2">ab 220 €</span>
+                            </button>
+
+                            <button type="button" onclick="selectService('Reparaturen, Fehlersuche & Wartung', 95)" class="w-full text-left p-4 rounded-xl border border-zinc-200 bg-zinc-50 hover:border-[#E5C900] hover:bg-amber-50/30 transition flex justify-between items-center cursor-pointer">
+                                <div>
+                                    <div class="font-bold text-zinc-900">Reparaturen, Fehlersuche &amp; Wartung</div>
+                                    <div class="text-xs text-zinc-500">Störungsbehebung, Austausch defekter Anlagen &amp; E-Check</div>
+                                </div>
+                                <span class="bg-[#313338] text-[#E5C900] font-bold text-xs px-2.5 py-1 rounded-lg shrink-0 ml-2">ab 95 €</span>
+                            </button>
+
+                            <button type="button" onclick="selectService('Sicherheitstechnik (Alarm, Video & Rauchmelder)', 260)" class="w-full text-left p-4 rounded-xl border border-zinc-200 bg-zinc-50 hover:border-[#E5C900] hover:bg-amber-50/30 transition flex justify-between items-center cursor-pointer">
+                                <div>
+                                    <div class="font-bold text-zinc-900">Sicherheitstechnik</div>
+                                    <div class="text-xs text-zinc-500">Rauchmelder, Alarmanlagen &amp; Videoüberwachung</div>
+                                </div>
+                                <span class="bg-[#313338] text-[#E5C900] font-bold text-xs px-2.5 py-1 rounded-lg shrink-0 ml-2">ab 260 €</span>
+                            </button>
+
+                            <button type="button" onclick="selectService('Energieeffizienz & LED-Modernisierung', 190)" class="w-full text-left p-4 rounded-xl border border-zinc-200 bg-zinc-50 hover:border-[#E5C900] hover:bg-amber-50/30 transition flex justify-between items-center cursor-pointer">
+                                <div>
+                                    <div class="font-bold text-zinc-900">Energieeffizienz &amp; LED-Systeme</div>
+                                    <div class="text-xs text-zinc-500">Beratung, moderne LED-Lichttechnik &amp; Stromspar-Lösungen</div>
+                                </div>
+                                <span class="bg-[#313338] text-[#E5C900] font-bold text-xs px-2.5 py-1 rounded-lg shrink-0 ml-2">ab 190 €</span>
+                            </button>
+                        </div>
+
+                        <!-- Schritt 2: Umfang -->
+                        <div id="step2" class="step-panel hidden space-y-5">
+                            <div>
+                                <h3 class="text-base md:text-lg font-bold text-zinc-900 mb-3">2. Wie groß ist der geplante Umfang?</h3>
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                    <button type="button" onclick="selectSize('Einzelauftrag / 1 Raum', 1)" class="p-4 rounded-xl border border-zinc-200 bg-zinc-50 hover:border-[#E5C900] transition text-center cursor-pointer">
+                                        <div class="font-bold text-zinc-900 text-sm">Kompakt</div>
+                                        <div class="text-xs text-zinc-500 mt-1">1 Raum / Einzelauftrag</div>
+                                    </button>
+                                    <button type="button" onclick="selectSize('Wohnung / Mehrere Räume', 2.2)" class="p-4 rounded-xl border border-zinc-200 bg-zinc-50 hover:border-[#E5C900] transition text-center cursor-pointer">
+                                        <div class="font-bold text-zinc-900 text-sm">Wohnung / Büro</div>
+                                        <div class="text-xs text-zinc-500 mt-1">Mehrere Räume</div>
+                                    </button>
+                                    <button type="button" onclick="selectSize('Komplettsanierung / Neubau', 4.4)" class="p-4 rounded-xl border border-zinc-200 bg-zinc-50 hover:border-[#E5C900] transition text-center cursor-pointer">
+                                        <div class="font-bold text-zinc-900 text-sm">Gesamtobjekt</div>
+                                        <div class="text-xs text-zinc-500 mt-1">Einfamilienhaus / Neubau</div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bg-zinc-50 border border-zinc-200 rounded-xl p-4">
+                                <label class="flex items-center gap-2.5 text-xs text-zinc-800 font-semibold cursor-pointer">
+                                    <input type="checkbox" id="optEcheck" class="accent-[#313338] w-4 h-4">
+                                    <span>Zusätzlich Sicherheits-Check / Prüfung bestehender Leitungen gewünscht</span>
+                                </label>
+                            </div>
+
+                            <button type="button" onclick="goStep(1)" class="text-xs text-zinc-500 hover:text-zinc-900 font-medium pt-1 cursor-pointer">← Zurück</button>
+                        </div>
+
+                        <!-- Schritt 3: Ergebnis & Demo-Formular -->
+                        <div id="step3" class="step-panel hidden space-y-5">
+                            <div class="bg-[#313338] text-white rounded-xl p-5 text-center">
+                                <span class="text-xs text-[#E5C900] uppercase tracking-wider font-bold">Unverbindliche Preis-Schätzung</span>
+                                <div id="priceRange" class="text-2xl md:text-3xl font-extrabold text-white my-2">485 € – 620 €</div>
+                                <p id="summaryText" class="text-xs text-zinc-300"></p>
+                            </div>
+
+                            <form id="leadForm" class="space-y-3">
+                                <input type="hidden" name="access_key" value="DEIN_WEB3FORMS_KEY">
+                                <input type="hidden" name="subject" value="Neue Projektanfrage - Daniel Peters Elektrotechnik">
+                                <input type="hidden" id="hiddenDetails" name="kalkulation">
+
+                                <div>
+                                    <label class="block text-xs text-zinc-600 font-semibold mb-1">Ihr Name *</label>
+                                    <input type="text" name="name" required placeholder="Max Mustermann" class="w-full bg-zinc-50 border border-zinc-300 rounded-lg px-4 py-2.5 text-sm text-zinc-900 focus:outline-none focus:border-[#313338] focus:bg-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-zinc-600 font-semibold mb-1">Telefonnummer oder E-Mail für Rückmeldung *</label>
+                                    <input type="text" name="contact" required placeholder="0171 / 0221... oder E-Mail" class="w-full bg-zinc-50 border border-zinc-300 rounded-lg px-4 py-2.5 text-sm text-zinc-900 focus:outline-none focus:border-[#313338] focus:bg-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-zinc-600 font-semibold mb-1">Kölner Stadtteil &amp; kurze Beschreibung</label>
+                                    <input type="text" name="details" placeholder="z.B. Köln-Ehrenfeld, LED-Beleuchtung & Rauchmelder" class="w-full bg-zinc-50 border border-zinc-300 rounded-lg px-4 py-2.5 text-sm text-zinc-900 focus:outline-none focus:border-[#313338] focus:bg-white">
+                                </div>
+
+                                <button type="submit" id="submitBtn" class="w-full bg-[#E5C900] hover:bg-[#f2d600] text-zinc-950 font-extrabold py-3.5 rounded-lg text-sm transition shadow-sm cursor-pointer">
+                                    Unverbindliches Angebot anfragen
+                                </button>
+                                <p class="text-[11px] text-zinc-400 text-center">
+                                    Hinweis: Funktions-Vorschau im Rahmen des Design-Entwurfs von Local Growth Media.
+                                </p>
+                            </form>
+
+                            <div id="successBox" class="hidden bg-emerald-50 border border-emerald-300 text-emerald-900 p-4 rounded-xl text-sm text-center">
+                                ✅ <strong>Vorschau-Bestätigung:</strong> So sieht die Sofort-Bestätigung für Ihre Kunden nach dem Absenden aus.
+                            </div>
+
+                            <button type="button" onclick="goStep(1)" class="text-xs text-zinc-500 hover:text-zinc-900 block mx-auto font-medium cursor-pointer">Rechner neu starten</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- UNTERSEITE 4: KONTAKT, STANDORT & RECHTLICHES-VORSCHAU    -->
+        <!-- ========================================================= -->
+        <div id="view-kontakt" class="page-view hidden">
+            <section class="py-14 px-4 bg-[#313338] text-white border-b border-zinc-700">
+                <div class="max-w-5xl mx-auto">
+                    <span class="text-[#E5C900] text-xs font-bold uppercase tracking-widest">Köln-Ehrenfeld &amp; Umgebung</span>
+                    <h1 class="font-tech text-3xl md:text-5xl font-bold uppercase mt-1 mb-4">
+                        Kontakt &amp; Meisterbetrieb
+                    </h1>
+                    <p class="text-zinc-300 text-base max-w-2xl leading-relaxed">
+                        Haben Sie Fragen zu einer geplanten Elektroinstallation oder benötigen Sie schnelle Hilfe bei einer Reparatur? Melden Sie sich gerne direkt telefonisch oder per E-Mail.
+                    </p>
+                </div>
+            </section>
+
+            <section class="py-14 px-4 bg-white">
+                <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-zinc-50 border border-zinc-200 p-7 rounded-2xl space-y-5">
+                        <div>
+                            <h2 class="font-tech text-xl font-bold text-zinc-900 uppercase">Daniel Peters Elektrotechnik</h2>
+                            <p class="text-xs text-zinc-500 mt-1">Meisterbetrieb in Köln</p>
+                        </div>
+                        <ul class="space-y-3 text-sm text-zinc-700">
+                            <li>📍 <strong>Standort:</strong> Akazienweg 80, 50827 Köln</li>
+                            <li>📱 <strong>Telefon:</strong> <a href="tel:+491718635605" class="text-zinc-950 font-bold underline decoration-[#E5C900] decoration-2">+49 171 8635605</a></li>
+                            <li>✉️ <strong>E-Mail:</strong> <a href="mailto:info@dp-elektrotechnik.de" class="text-zinc-950 font-bold underline decoration-[#E5C900] decoration-2">info@dp-elektrotechnik.de</a></li>
+                        </ul>
+                        <a href="tel:+491718635605" class="block w-full text-center bg-[#313338] hover:bg-zinc-900 text-[#E5C900] font-bold py-3.5 rounded-xl text-sm transition">
+                            Jetzt direkt anrufen: +49 171 8635605
+                        </a>
+                    </div>
+
+                    <div class="bg-zinc-50 border border-zinc-200 p-7 rounded-2xl space-y-4">
+                        <div class="inline-block bg-amber-100 text-amber-900 text-[11px] font-bold px-2.5 py-1 rounded-md">
+                            Rechtliches-Struktur (Vorschau für Live-Schaltung)
+                        </div>
+                        <h2 class="font-tech text-xl font-bold text-zinc-900 uppercase">Impressum &amp; Datenschutz</h2>
+                        <p class="text-xs text-zinc-600 leading-relaxed">
+                            Bei der Live-Schaltung unter <strong>dp-elektrotechnik.de</strong> (inklusive SSL-Verschlüsselung `https://` und korrigiertem Seitentitel) werden hier Ihre vollständigen Pflichtangaben gemäß § 5 DDG hinterlegt:
+                        </p>
+                        <div class="bg-white border border-zinc-200 rounded-xl p-4 text-xs text-zinc-600 space-y-1">
+                            <div><strong>Daniel Peters Elektrotechnik – Meisterbetrieb</strong></div>
+                            <div>Akazienweg 80, 50827 Köln</div>
+                            <div>Telefon: +49 171 8635605 · E-Mail: info@dp-elektrotechnik.de</div>
+                            <div>Zuständige Kammer: Handwerkskammer zu Köln</div>
+                            <div>Gesetzliche Berufsbezeichnung: Elektromeister (verliehen in der Bundesrepublik Deutschland)</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Footer im Original-Anthrazit mit Meister-Gelb -->
+    <footer class="py-12 px-4 bg-[#26282C] text-zinc-300 text-sm border-t border-white/10">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div>
+                <div class="font-tech text-lg font-bold text-white uppercase tracking-wider">
+                    DANIEL PETERS ELEKTROTECHNIK <span class="text-[#E5C900]">· MEISTERBETRIEB</span>
+                </div>
+                <div class="text-xs text-zinc-400 mt-1">Akazienweg 80 · 50827 Köln · Tel.: +49 171 8635605</div>
+            </div>
+
+            <div class="flex flex-wrap gap-4 text-xs font-medium">
+                <button type="button" onclick="navigateTo('home')" class="hover:text-[#E5C900] transition cursor-pointer">Startseite</button>
+                <button type="button" onclick="navigateTo('leistungen')" class="hover:text-[#E5C900] transition cursor-pointer">Leistungen</button>
+                <button type="button" onclick="navigateTo('rechner')" class="hover:text-[#E5C900] transition cursor-pointer">Preisrechner</button>
+                <button type="button" onclick="navigateTo('kontakt')" class="hover:text-[#E5C900] transition cursor-pointer">Kontakt &amp; Impressum</button>
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-zinc-400">
+            <span>Unverbindlicher Design-Entwurf erstellt von <strong>Local Growth Media</strong> · Köln</span>
+            <span>Demoseite – nicht öffentlich indexiert</span>
+        </div>
+    </footer>
+
+    <script>
+        /* --- 1. Multi-Page Navigation --- */
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page-view').forEach(el => el.classList.add('hidden'));
+            const target = document.getElementById('view-' + pageId);
+            if (target) target.classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if (btn.dataset.nav === pageId) {
+                    btn.classList.add('bg-[#E5C900]', 'text-zinc-950', 'shadow-2xs', 'font-bold');
+                    btn.classList.remove('text-zinc-300', 'font-medium');
+                } else {
+                    btn.classList.remove('bg-[#E5C900]', 'text-zinc-950', 'shadow-2xs', 'font-bold');
+                    btn.classList.add('text-zinc-300', 'font-medium');
+                }
+            });
+
+            document.querySelectorAll('.mob-nav-btn').forEach(btn => {
+                if (btn.dataset.navMob === pageId) {
+                    btn.classList.add('text-zinc-950', 'bg-[#E5C900]');
+                    btn.classList.remove('text-zinc-300');
+                } else {
+                    btn.classList.remove('text-zinc-950', 'bg-[#E5C900]');
+                    btn.classList.add('text-zinc-300');
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* --- 2. Interaktives Smart-Home-, Sicherheits- & Energie-Studio --- */
+        const studioState = {
+            smart: true,
+            security: true,
+            energy: true
+        };
+
+        function toggleHomeFeature(feature, btn) {
+            studioState[feature] = !studioState[feature];
+            const active = studioState[feature];
+            const statusSpan = btn.querySelector('span:last-child');
+
+            if (active) {
+                btn.classList.add('border-[#E5C900]', 'bg-[#E5C900]/15');
+                btn.classList.remove('border-white/15', 'bg-white/5', 'opacity-65');
+                statusSpan.innerText = 'AKTIV';
+                statusSpan.classList.replace('text-zinc-400', 'text-[#E5C900]');
+            } else {
+                btn.classList.remove('border-[#E5C900]', 'bg-[#E5C900]/15');
+                btn.classList.add('border-white/15', 'bg-white/5', 'opacity-65');
+                statusSpan.innerText = 'AUS';
+                statusSpan.classList.replace('text-[#E5C900]', 'text-zinc-400');
+            }
+
+            // Visuelle Reaktion im Hausmodell
+            const roomSmart = document.getElementById('roomSmartLight');
+            const lightState = document.getElementById('smartLightState');
+            const lightBar = document.getElementById('smartLightBar');
+            if (studioState.smart) {
+                roomSmart.className = 'rounded-lg border border-[#E5C900]/50 bg-[#E5C900]/15 p-2.5 transition-all duration-300';
+                lightState.innerText = 'Szene: Warm';
+                lightBar.style.width = '80%';
+            } else {
+                roomSmart.className = 'rounded-lg border border-white/10 bg-white/5 p-2.5 transition-all duration-300 opacity-50';
+                lightState.innerText = 'Standby';
+                lightBar.style.width = '10%';
+            }
+
+            const roomSec = document.getElementById('roomSecurity');
+            const secState = document.getElementById('secState');
+            const visCam = document.getElementById('visCamera');
+            const visSmoke = document.getElementById('visSmoke');
+            if (studioState.security) {
+                roomSec.className = 'rounded-lg border border-emerald-500/40 bg-emerald-500/10 p-2.5 transition-all duration-300';
+                secState.innerText = 'Scharf';
+                visCam.style.opacity = '1';
+                visSmoke.style.opacity = '1';
+            } else {
+                roomSec.className = 'rounded-lg border border-white/10 bg-white/5 p-2.5 transition-all duration-300 opacity-50';
+                secState.innerText = 'Inaktiv';
+                visCam.style.opacity = '0.2';
+                visSmoke.style.opacity = '0.2';
+            }
+
+            const energyBadge = document.getElementById('energyBadge');
+            if (studioState.energy) {
+                energyBadge.innerText = '⚡ Effizienz: +42 % Ersparnis';
+                energyBadge.className = 'bg-[#E5C900]/20 border border-[#E5C900]/40 text-[#E5C900] text-[10px] font-bold px-2.5 py-1 rounded-full';
+            } else {
+                energyBadge.innerText = '⚡ Standard-Verbrauch';
+                energyBadge.className = 'bg-white/10 border border-white/15 text-zinc-300 text-[10px] font-bold px-2.5 py-1 rounded-full';
+            }
+        }
+
+        function runVdeCheck() {
+            const diagText = document.getElementById('diagStatusText');
+            diagText.innerText = 'Prüfe Schutzleiter & FI-Auslösung...';
+            diagText.className = 'text-[#E5C900] font-semibold ml-1';
+            setTimeout(() => {
+                diagText.innerText = 'Alle Messwerte im grünen Bereich ✓';
+                diagText.className = 'text-emerald-400 font-semibold ml-1';
+            }, 900);
+        }
+
+        function transferStudioToCalculator() {
+            const chosen = [];
+            let sum = 0;
+            if (studioState.smart) { chosen.push('Smart-Home & Licht'); sum += 220; }
+            if (studioState.security) { chosen.push('Sicherheitstechnik'); sum += 260; }
+            if (studioState.energy) { chosen.push('LED-Energieeffizienz'); sum += 190; }
+            if (sum === 0) { chosen.push('Elektro-Beratung & Check'); sum = 140; }
+
+            const totalMax = Math.round(sum * 1.25);
+            navigateTo('rechner');
+            document.getElementById('priceRange').innerText = `${sum.toLocaleString()} € – ${totalMax.toLocaleString()} €`;
+            document.getElementById('summaryText').innerText = `Wunschpaket: ${chosen.join(' + ')}`;
+            document.getElementById('hiddenDetails').value = `Wunschpaket: ${chosen.join(' + ')} | Schätzung: ${sum}€ - ${totalMax}€`;
+            goStep(3);
+        }
+
+        /* --- 3. 30-Sekunden-Preisrechner --- */
+        let state = { serviceName: '', basePrice: 0, sizeLabel: '', multiplier: 1 };
+
+        function quickStartCalculator(serviceName, basePrice) {
+            navigateTo('rechner');
+            selectService(serviceName, basePrice);
+        }
+
+        function goStep(step) {
+            document.querySelectorAll('.step-panel').forEach(el => el.classList.add('hidden'));
+            document.getElementById('step' + step).classList.remove('hidden');
+            let pct = step === 1 ? '33%' : (step === 2 ? '66%' : '100%');
+            document.getElementById('stepLabel').innerText = `Schritt ${step} von 3`;
+            document.getElementById('stepPercent').innerText = pct;
+            document.getElementById('progressBar').style.width = pct;
+        }
+
+        function selectService(name, price) {
+            state.serviceName = name;
+            state.basePrice = price;
+            goStep(2);
+        }
+
+        function selectSize(label, multiplier) {
+            state.sizeLabel = label;
+            state.multiplier = multiplier;
+
+            const hasEcheck = document.getElementById('optEcheck')?.checked;
+            const echeckAdd = hasEcheck ? 75 : 0;
+
+            const totalMin = Math.round(state.basePrice * state.multiplier + echeckAdd);
+            const totalMax = Math.round(totalMin * 1.26);
+
+            document.getElementById('priceRange').innerText = `${totalMin.toLocaleString()} € – ${totalMax.toLocaleString()} €`;
+            const summary = `${state.serviceName} (${state.sizeLabel})${hasEcheck ? ' · inkl. Sicherheits-Check' : ''}`;
+            document.getElementById('summaryText').innerText = summary;
+            document.getElementById('hiddenDetails').value = `${summary} | Schätzung: ${totalMin}€ - ${totalMax}€`;
+
+            goStep(3);
+        }
+
+        document.getElementById('leadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = 'Wird gesendet...';
+            btn.disabled = true;
+
+            const formData = new FormData(this);
+            const object = Object.fromEntries(formData);
+
+            try {
+                await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(object)
+                });
+            } catch (error) {}
+
+            this.classList.add('hidden');
+            document.getElementById('successBox').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
